@@ -1,0 +1,243 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x5B527F2D90854B9",
+      "device": "xc7a100tcsg324-1",
+      "gen_directory": "../../../../seven_seg_demo.gen/sources_1/bd/design_1",
+      "name": "design_1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2021.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "button": "",
+      "controller": "",
+      "seven_seg": ""
+    },
+    "ports": {
+      "CPU_RESETN": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
+      },
+      "CLK100MHZ": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "CPU_RESETN",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "design_1_CLK_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "BTNU": {
+        "direction": "I"
+      },
+      "SEG": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
+      },
+      "AN": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
+      }
+    },
+    "components": {
+      "button": {
+        "vlnv": "xilinx.com:module_ref:button:1.0",
+        "xci_name": "design_1_button_0_0",
+        "xci_path": "ip\\design_1_button_0_0\\design_1_button_0_0.xci",
+        "inst_hier_path": "button",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "button",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "CLK": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "design_1_CLK_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "PIN": {
+            "direction": "I"
+          },
+          "Q": {
+            "direction": "O"
+          }
+        }
+      },
+      "controller": {
+        "vlnv": "xilinx.com:module_ref:controller:1.0",
+        "xci_name": "design_1_controller_0_0",
+        "xci_path": "ip\\design_1_controller_0_0\\design_1_controller_0_0.xci",
+        "inst_hier_path": "controller",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "controller",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "CLK": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "RESETN",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_CLK_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "RESETN": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "constant"
+              }
+            }
+          },
+          "BUTTON": {
+            "direction": "I"
+          },
+          "VALUE": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "seven_seg": {
+        "vlnv": "xilinx.com:module_ref:seven_seg:1.0",
+        "xci_name": "design_1_seven_seg_0_0",
+        "xci_path": "ip\\design_1_seven_seg_0_0\\design_1_seven_seg_0_0.xci",
+        "inst_hier_path": "seven_seg",
+        "parameters": {
+          "STYLE": {
+            "value": "1"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "seven_seg",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "CLK": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "design_1_CLK_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "VALUE": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "CATHODE": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "ANODE": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "CLK_0_1": {
+        "ports": [
+          "CLK100MHZ",
+          "button/CLK",
+          "controller/CLK",
+          "seven_seg/CLK"
+        ]
+      },
+      "PIN_0_1": {
+        "ports": [
+          "BTNU",
+          "button/PIN"
+        ]
+      },
+      "RESETN_0_1": {
+        "ports": [
+          "CPU_RESETN",
+          "controller/RESETN"
+        ]
+      },
+      "button_Q": {
+        "ports": [
+          "button/Q",
+          "controller/BUTTON"
+        ]
+      },
+      "controller_0_VALUE": {
+        "ports": [
+          "controller/VALUE",
+          "seven_seg/VALUE"
+        ]
+      },
+      "seven_seg_ANODE": {
+        "ports": [
+          "seven_seg/ANODE",
+          "AN"
+        ]
+      },
+      "seven_seg_CATHODE": {
+        "ports": [
+          "seven_seg/CATHODE",
+          "SEG"
+        ]
+      }
+    }
+  }
+}
